@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Navbar from "./components/Navbar";
+import Credential from "./components/Credential";
+import FormPage from "./components/FormPage";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+  const [page, setPage] = useState("Register");
+  const [present, setPresent] = useState(false);
+  const [weatherDetail, setWeatherDetail] = useState({});
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App text-blue-300">
+      <Router>
+        <Navbar setPage={setPage} setPresent={setPresent} />
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              present === false ? (
+                <Credential
+                  title={page === "Register" ? "Register" : "Login"}
+                  pageType={page === "Register" ? "register" : "login"}
+                  setPage={setPage}
+                  setPresent={setPresent}
+                />
+              ) : (
+                <FormPage
+                  weatherDetail={weatherDetail}
+                  setWeatherDetail={setWeatherDetail}
+                />
+              )
+            }
+          />
+        </Routes>
+      </Router>
     </div>
   );
 }
