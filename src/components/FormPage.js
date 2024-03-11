@@ -27,9 +27,9 @@ const FormPage = ({ weatherDetail, setWeatherDetail }) => {
       let response;
 
       if (place) {
-        response = await axios.post("http://localhost:4000/weather", detail);
+        response = await axios.post("https://weather-backend-nine.vercel.app/weather", detail);
       } else {
-        response = await axios.post("http://localhost:4000/weather", detail);
+        response = await axios.post("https://weather-backend-nine.vercel.app/weather", detail);
       }
 
       if (!response.data || Object.keys(response.data).length === 0) {
