@@ -37,7 +37,7 @@ const Credential = ({
     const { email, password } = user;
     if (email && password) {
       try {
-        const value = await axios.post("http://localhost:4000/register", user);
+        const value = await axios.post("https://weather-backend-nine.vercel.app/register", user);
         alert(value.data.message);
         setPage("Login");
       } catch (error) {
@@ -51,7 +51,7 @@ const Credential = ({
     const { email, password } = user;
     if (email && password) {
       try {
-        const value = await axios.post("http://localhost:4000/login", user);
+        const value = await axios.post("https://weather-backend-nine.vercel.app/login", user);
         alert(value.data.message);
         setPresent(true);
       } catch (error) {
